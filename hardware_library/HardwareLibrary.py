@@ -42,7 +42,9 @@ class HardwareLibrary:
                     self.hardware[hrdw]["value"] = -0.1
                 else:
                     self.hardware[hrdw]["value"] = False
-    
+
+                createHardware(hrdw)
+
     """
     Repr method
     returns:
@@ -58,6 +60,16 @@ class HardwareLibrary:
     """
     def __str__(self):
         return 'DeviceName:\n\t{}\nHardware:\n\t{}'.format(self.deviceName, self.hardware)
+
+    """
+    Create Hardware Function (DO NOT USE)
+    desc:
+        creates the hardware on the web app
+    """
+    def createHardware(self, hardware):
+        serial = self.hardware[hardware]
+        serial["deviceName"] = self.deviceName
+        serial[""]
 
     """
     isValidDefinition
@@ -118,7 +130,8 @@ class HardwareLibrary:
         ValueError if hardware isn't valid or value cannot be changed
     """
     def changeValue(self, hardware, value):
-        if hardware not in self.hardware.keys():
+        if (hardware not in self.hardware.keys()
+            or self.hardware[hardware]["hardwareType"].startswith("actuator")):
             raise ValueError
         
         if type(value) == type(self.hardware[hardware]["value"]):

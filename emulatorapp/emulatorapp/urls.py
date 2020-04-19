@@ -1,10 +1,10 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from emulatorapp import views
+import emulatorapp.views as views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('devices/', views.device_list),
+    path('create/', views.createHardware),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

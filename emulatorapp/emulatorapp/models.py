@@ -6,6 +6,11 @@ class Hardware(models.Model):
         ('S', 'Sensor'),
         ('A', 'Actuator')
     )
+    VALUE_TYPES = (
+        ('I', 'Integer'),
+        ('B', 'Boolean'),
+        ('F', 'Float')
+    )
 
     deviceName = models.CharField(max_length=50)
     hardwareName = models.CharField(max_length=50)
@@ -17,4 +22,4 @@ class Hardware(models.Model):
     valueFloat = models.FloatField(default=-0.1)
 
     def __str__(self):
-        return self.name + " function of " + self.device + " device"
+        return self.hardwareName + " function of " + self.deviceName + " device"

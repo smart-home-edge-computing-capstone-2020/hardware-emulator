@@ -1,4 +1,4 @@
-from HardwareLibrary import Device as HD
+from HardwareLibrary import HardwareLibrary as HD
 
 """
 Tests for HardwareDefinition Class
@@ -98,28 +98,28 @@ assert HD.isValidDefinition(invalidDefn4) == False, "invalidDefn4"
 print("pass")
 
 print("\t__init__: ")
-validDefinition = HD(validDefn)
+validDefinition = HD(validDefn,'')
 
 try:
-    invalidDefinition = HD(invalidDefn1)
+    invalidDefinition = HD(invalidDefn1,'')
 except:
     print("\t\tpassed invalid1")
     pass
 
 try:
-    invalidDefinition = HD(invalidDefn2)
+    invalidDefinition = HD(invalidDefn2,'')
 except:
     print("\t\tpassed invalid2")
     pass
 
 try:
-    invalidDefinition = HD(invalidDefn3)
+    invalidDefinition = HD(invalidDefn3,'')
 except:
     print("\t\tpassed invalid3")
     pass
 
 try:
-    invalidDefinition = HD(invalidDefn4)
+    invalidDefinition = HD(invalidDefn4,'')
 except:
     print("\t\tpassed invalid4")
     pass
