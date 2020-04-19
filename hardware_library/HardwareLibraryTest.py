@@ -1,4 +1,4 @@
-from HardwareLibrary import HardwareDefinition as HD
+from HardwareLibrary import Device as HD
 
 """
 Tests for HardwareDefinition Class
