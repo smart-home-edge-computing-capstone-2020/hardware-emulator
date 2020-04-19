@@ -123,5 +123,7 @@ try:
 except:
     print("\t\tpassed invalid4")
     pass
-
 print("\t\tpassed all")
+
+print("\tchangeValue")
+# validDefinition.changeValue("validHardware1", 5)

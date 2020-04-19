@@ -1,23 +1,20 @@
 from django.db import models
 
 # Create your models here.
-class Device(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-class Function(models.Model):
+class Hardware(models.Model):
     FUNCTION_TYPES = (
         ('S', 'Sensor'),
         ('A', 'Actuator')
     )
 
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
+    deviceName = models.CharField(max_length=50)
+    hardwareName = models.CharField(max_length=50)
     function_type = models.CharField(max_length=1, choices=FUNCTION_TYPES)
+    pin = models.IntegerField(default=-1)
+    valueType = models.CharField(max_length=10)
+    valueInteger = models.IntegerField(default=-1)
+    valueBoolean = models.BooleanField(default=False)
+    valueFloat = models.FloatField(default=-0.1)
 
     def __str__(self):
         return self.name + " function of " + self.device + " device"

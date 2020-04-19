@@ -42,8 +42,6 @@ class HardwareLibrary:
                     self.hardware[hrdw]["value"] = -0.1
                 else:
                     self.hardware[hrdw]["value"] = False
-                
-                self.hardware[hrdw]["valid"] = False
     
     """
     Repr method
@@ -138,25 +136,10 @@ class HardwareLibrary:
         ValueError if the hardware given does not exist
     """
     def checkValue(self, hardware):
-        if (hardware not in self.hardware.keys() or not self.checkValidity(hardware)):
+        if (hardware not in self.hardware.keys()):
             raise ValueError
 
         return self.hardware[hardware]["value"]
-
-    """
-    Check Validity Method
-    desc:
-        checks the validity of the hardware value given
-    returns:
-        True if the value is valid
-        False otherwise
-    Throws
-    """
-    def checkValidity(self, hardware):
-        if hardware not in self.hardware.keys():
-            raise ValueError
-
-        return self.hardware[hardware]["valid"]
 
     """
     Poll Value Method
