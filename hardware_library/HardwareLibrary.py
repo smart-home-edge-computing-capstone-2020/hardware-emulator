@@ -127,21 +127,6 @@ class HardwareLibrary:
             raise ValueError
 
     """
-    Check Value Method
-    desc:
-        checks the value of the hardware given without polling hardware
-    returns:
-        the value of the hardware provided
-    throws:
-        ValueError if the hardware given does not exist
-    """
-    def checkValue(self, hardware):
-        if (hardware not in self.hardware.keys()):
-            raise ValueError
-
-        return self.hardware[hardware]["value"]
-
-    """
     Poll Value Method
     desc:
         polls the value of the hardware through the hardware
