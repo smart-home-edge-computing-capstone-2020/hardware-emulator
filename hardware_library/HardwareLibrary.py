@@ -1,4 +1,4 @@
-import requests, abc, json
+import requests, json
 
 # URL = "http://127.0.0.1:8000/emulator/"
 
@@ -13,13 +13,17 @@ import requests, abc, json
 #     r = requests.post(url=URL+sys.argv[2], data=data)
 #     print(r.text)
 
-class HardwareDefinition:
+class HardwareLibrary:
     """
     Class initializer
     throws:
         ValueError: if the definition given is invalid
     """
-    def __init__(self, definition: str):
+    def __init__(self, definition: str, emulatorURL: str):
+        # save emulator URL
+        self.emulatorURL = emulatorURL
+
+        # deal with device definition
         if not self.isValidDefinition(definition):
             raise ValueError
         else:
@@ -108,22 +112,40 @@ class HardwareDefinition:
 
         return True
 
-            
+    """
+    Change Value Method
+    desc:
+        changes the value of an actuator hardware and invalidates the hardware
+    throws:
+        Exception if the value cannot be changed
+    """
+    def changeValue(self, hardware, value):
+        pass
 
+    """
+    Check Value Method
+    desc:
+        checks the value of the hardware given
+    returns:
+        the value of the hardware provided
+    throws:
+        Error if the value is invalid
+        ValueError if the hardware given does not exist
+    """
+    def checkValue(self, hardware):
+        pass
 
-        
+    """
+    Check Validity Method
+    desc:
+        checks the validity of the hardware value given
+    returns:
+        True if the value is valid
+        False otherwise
+    Throws
+    """
+    def checkValidity(self, hardware):
+        pass
 
-
-# class HardwareLibraryInterface(ABC):
-#     @classmethod
-#     def __subclasshook__(cls, subclass):
-#         return (hasattr(subclass, 'defineHardware') and
-#                 callable(subclass.defineHardware) and
-#                 )
-
-#     @abstractmethod
-#     def defineHardware(self, ):
-#         pass
-    
-#     @abstractmethod
-#     def 
+    """
+    Send
