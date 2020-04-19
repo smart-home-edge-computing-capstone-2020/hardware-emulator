@@ -117,23 +117,31 @@ class HardwareLibrary:
     desc:
         changes the value of an actuator hardware and invalidates the hardware
     throws:
-        Exception if the value cannot be changed
+        ValueError if hardware isn't valid or value cannot be changed
     """
     def changeValue(self, hardware, value):
-        pass
+        if hardware not in self.hardware.keys():
+            raise ValueError
+        
+        if type(value) == type(self.hardware[hardware]["value"]):
+            self.hardware[hardware]["value"] = value
+        else:
+            raise ValueError
 
     """
     Check Value Method
     desc:
-        checks the value of the hardware given
+        checks the value of the hardware given without polling hardware
     returns:
         the value of the hardware provided
     throws:
-        Error if the value is invalid
         ValueError if the hardware given does not exist
     """
     def checkValue(self, hardware):
-        pass
+        if (hardware not in self.hardware.keys() or not self.checkValidity(hardware)):
+            raise ValueError
+
+        return self.hardware[hardware]["value"]
 
     """
     Check Validity Method
@@ -145,7 +153,22 @@ class HardwareLibrary:
     Throws
     """
     def checkValidity(self, hardware):
-        pass
+        if hardware not in self.hardware.keys():
+            raise ValueError
+
+        return self.hardware[hardware]["valid"]
 
     """
-    Send
+    Poll Value Method
+    desc:
+        polls the value of the hardware through the hardware
+    returns:
+        the value of the hardware given
+    throws:
+        ValueError if the hardware given does not exist
+    """
+    def pollValue(self, hardware):
+        if hardware not in self.hardware.keys():
+            raise ValueError
+
+        #To be continued
