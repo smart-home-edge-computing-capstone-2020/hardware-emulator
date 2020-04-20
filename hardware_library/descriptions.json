@@ -1,0 +1,54 @@
+{   "deviceName": "SensorNode1",
+    "hardware": {
+        "proximity1": {
+            "hardwareType": "sensor",
+            "pin": 1,
+            "valueType": "float"
+        }
+    }
+}
+{   "deviceName": "SensorNode2",
+    "hardware": {
+        "proximity2": {
+            "hardwareType": "sensor",
+            "pin": 1,
+            "valueType": "float"
+        }
+    }
+}
+{   "deviceName": "SensorNode3",
+    "hardware": {
+        "proximity3": {
+            "hardwareType": "sensor",
+            "pin": 1,
+            "valueType": "float"
+        }
+    }
+}
+{   "deviceName": "AlarmClock",
+    "hardware": {
+        "alarm": {
+            "hardwareType": "actuator",
+            "pin": 1,
+            "valueType": "boolean"
+        }
+    }
+}
+{   "deviceName": "CoffeePot",
+    "hardware": {
+        "on/off": {
+            "hardwareType": "actuator",
+            "pin": 1,
+            "valueType": "boolean"
+        }
+    }
+}
+{   "deviceName": "LEDLamp",
+    "hardware": {
+        "LED": {
+            "hardwareType": "actuator",
+            "pin": 1,
+            "valueType": "integer"
+        }
+    }
+}
