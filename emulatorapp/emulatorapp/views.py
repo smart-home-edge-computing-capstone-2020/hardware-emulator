@@ -47,7 +47,7 @@ def hardwareValue(request, deviceName, hardwareName):
         if 'i' == hardware.valueType:
             hardware.valueInteger = data["value"]
 
-        elif 'b' == hardware["valueType"]:
+        elif 'b' == hardware.valueType:
             hardware.valueBoolean = data["value"]
         
         else:
