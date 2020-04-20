@@ -98,32 +98,33 @@ assert HD.isValidDefinition(invalidDefn4) == False, "invalidDefn4"
 print("pass")
 
 print("\t__init__: ")
-validDefinition = HD(validDefn,'')
+validDefinition = HD(validDefn,"http://127.0.0.1:8000/emulator/")
 
-try:
-    invalidDefinition = HD(invalidDefn1,'')
-except:
-    print("\t\tpassed invalid1")
-    pass
+# try:
+#     invalidDefinition = HD(invalidDefn1,"http://127.0.0.1:8000/emulator/")
+# except:
+#     print("\t\tpassed invalid1")
+#     pass
 
-try:
-    invalidDefinition = HD(invalidDefn2,'')
-except:
-    print("\t\tpassed invalid2")
-    pass
+# try:
+#     invalidDefinition = HD(invalidDefn2,"http://127.0.0.1:8000/emulator/")
+# except:
+#     print("\t\tpassed invalid2")
+#     pass
 
-try:
-    invalidDefinition = HD(invalidDefn3,'')
-except:
-    print("\t\tpassed invalid3")
-    pass
+# try:
+#     invalidDefinition = HD(invalidDefn3,"http://127.0.0.1:8000/emulator/")
+# except:
+#     print("\t\tpassed invalid3")
+#     pass
 
-try:
-    invalidDefinition = HD(invalidDefn4,'')
-except:
-    print("\t\tpassed invalid4")
-    pass
-print("\t\tpassed all")
+# try:
+#     invalidDefinition = HD(invalidDefn4,"http://127.0.0.1:8000/emulator/")
+# except:
+#     print("\t\tpassed invalid4")
+#     pass
+# print("\t\tpassed all")
 
-print("\tchangeValue")
-# validDefinition.changeValue("validHardware1", 5)
+print("\tchangeValue:")
+validDefinition.changeValue("validHardware1", 5)
+print(validDefinition.pollValue("validHardware1"))

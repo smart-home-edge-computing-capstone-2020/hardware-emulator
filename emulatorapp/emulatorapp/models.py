@@ -3,20 +3,22 @@ from django.db import models
 # Create your models here.
 class Hardware(models.Model):
     FUNCTION_TYPES = (
-        ('S', 'Sensor'),
-        ('A', 'Actuator')
+        ('s', 'Sensor'),
+        ('a', 'Actuator'),
+        ('n', 'Not Set')
     )
     VALUE_TYPES = (
-        ('I', 'Integer'),
-        ('B', 'Boolean'),
-        ('F', 'Float')
+        ('i', 'Integer'),
+        ('b', 'Boolean'),
+        ('f', 'Float'),
+        ('n', 'Not Set')
     )
 
     deviceName = models.CharField(max_length=50)
     hardwareName = models.CharField(max_length=50)
-    function_type = models.CharField(max_length=1, choices=FUNCTION_TYPES)
+    hardwareType = models.CharField(max_length=1, choices=FUNCTION_TYPES, default='n')
     pin = models.IntegerField(default=-1)
-    valueType = models.CharField(max_length=10)
+    valueType = models.CharField(max_length=1, choices=VALUE_TYPES, default='n')
     valueInteger = models.IntegerField(default=-1)
     valueBoolean = models.BooleanField(default=False)
     valueFloat = models.FloatField(default=-0.1)

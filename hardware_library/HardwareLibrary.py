@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, copy
 
 # URL = "http://127.0.0.1:8000/emulator/"
 
@@ -43,7 +43,8 @@ class HardwareLibrary:
                 else:
                     self.hardware[hrdw]["value"] = False
 
-                createHardware(hrdw)
+                self.createHardware(hrdw)
+
 
     """
     Repr method
@@ -53,6 +54,7 @@ class HardwareLibrary:
     def __repr__(self):
         return '{"deviceName":{},"hardware":{}'.format(self.deviceName, self.hardware)
 
+
     """
     Str method
     returns:
@@ -61,15 +63,27 @@ class HardwareLibrary:
     def __str__(self):
         return 'DeviceName:\n\t{}\nHardware:\n\t{}'.format(self.deviceName, self.hardware)
 
+
     """
     Create Hardware Function (DO NOT USE)
     desc:
         creates the hardware on the web app
     """
     def createHardware(self, hardware):
-        serial = self.hardware[hardware]
+        serial = copy.deepcopy(self.hardware[hardware])
+        serial["hardwareType"] = serial["hardwareType"][0]
+        serial["valueType"] = serial["valueType"][0]
         serial["deviceName"] = self.deviceName
-        serial[""]
+        serial["hardwareName"] = hardware
+        serial["valueInteger"] = -1
+        serial["valueBoolean"] = False
+        serial["valueFloat"] = -0.1
+        serial.pop("value")
+
+        r = requests.post(  url=self.emulatorURL+"create/",
+                            headers = {'Content-Type': 'application/json'},
+                            data=json.dumps(serial))
+
 
     """
     isValidDefinition
@@ -122,6 +136,7 @@ class HardwareLibrary:
 
         return True
 
+
     """
     Change Value Method
     desc:
@@ -131,13 +146,29 @@ class HardwareLibrary:
     """
     def changeValue(self, hardware, value):
         if (hardware not in self.hardware.keys()
-            or self.hardware[hardware]["hardwareType"].startswith("actuator")):
+            or "actuator" not in self.hardware[hardware]["hardwareType"]):
             raise ValueError
         
         if type(value) == type(self.hardware[hardware]["value"]):
             self.hardware[hardware]["value"] = value
+            self.sendValue(hardware, value)
         else:
             raise ValueError
+
+    """
+    Send Value Method
+    desc:
+        a helper function for sending a value to the web app
+    """
+    def sendValue(self, hardwareName, value):
+        data = {"value": value}
+
+        print(data)
+
+        r = requests.post(  url=self.emulatorURL+"value/"+self.deviceName+"/"+hardwareName,
+                            headers = {'Content-Type': 'application/json'},
+                            json = data)
+
 
     """
     Poll Value Method
@@ -148,8 +179,12 @@ class HardwareLibrary:
     throws:
         ValueError if the hardware given does not exist
     """
-    def pollValue(self, hardware):
-        if hardware not in self.hardware.keys():
+    def pollValue(self, hardwareName):
+        if hardwareName not in self.hardware.keys():
             raise ValueError
+
+        r = requests.get(url=self.emulatorURL+"value/"+self.deviceName+"/"+hardwareName)
+
+        return json.loads(r.text)["value"]
 
         #To be continued

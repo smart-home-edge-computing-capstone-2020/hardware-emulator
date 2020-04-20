@@ -4,4 +4,4 @@ from rest_framework import serializers
 class HardwareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hardware
-        fields = ['deviceName', 'hardwareName', 'function_type', 'pin', 'valueType', 'valueInteger', 'valueBoolean', 'valueFloat']
+        fields = ['deviceName', 'hardwareName', 'hardwareType', 'pin', 'valueType', 'valueInteger', 'valueBoolean', 'valueFloat']
