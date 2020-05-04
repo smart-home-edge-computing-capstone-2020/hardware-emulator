@@ -150,8 +150,6 @@ class HardwareLibrary:
     def sendValue(self, hardwareName, value):
         data = {"value": value}
 
-        print(data)
-
         r = requests.post(  url=self.emulatorURL+"value/"+self.deviceName+"/"+hardwareName,
                             headers = {'Content-Type': 'application/json'},
                             json = data)
@@ -172,6 +170,6 @@ class HardwareLibrary:
 
         r = requests.get(url=self.emulatorURL+"value/"+self.deviceName+"/"+hardwareName)
 
-        return json.loads(r.text)["value"]
+        return r.json()["value"]
 
         #To be continued
